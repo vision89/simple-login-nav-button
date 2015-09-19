@@ -1,0 +1,129 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/hardware-icons.html">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <simple-login-nav-button></simple-login-nav-button>
+
+@group Seed Elements
+@element simple-login-nav-button
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="simple-login-nav-button">
+
+  <template>
+
+    <style>
+
+      :host {
+
+        display: block;
+        box-sizing: border-box;
+        font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+      }
+
+    </style>
+
+    <span hidden$="[[hideLogin]]">
+
+      <paper-button hidden$="[[user]]" on-click="login"> Login <iron-icon icon="hardware:keyboard-arrow-right"></iron-icon> </paper-button>
+
+    </span>
+
+    <span hidden$="[[!hideLogin]]">
+
+      <paper-button hidden$="[[!user]]" on-click="logout"> Logout </paper-button>
+
+    </span>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'simple-login-nav-button',
+
+    properties: {
+
+      user: {
+
+        type: Object,
+        value: null,
+        notify: false
+
+      },
+
+      hideLogin: {
+
+        type: Boolean,
+        value: false,
+        notify: true,
+        reflectToAttribute: true
+
+      }
+
+    },
+
+    login: function () {
+
+      this.fire( 'login-clicked' );
+
+    },
+
+    logout: function () {
+
+      this.fire( 'logout-clicked' );
+
+    },
+
+    // Element Lifecycle
+
+    ready: function() {
+      // `ready` is called after all elements have been configured, but
+      // propagates bottom-up. This element's children are ready, but parents
+      // are not.
+      //
+      // This is the point where you should make modifications to the DOM (when
+      // necessary), or kick off any processes the element wants to perform.
+    },
+
+    attached: function() {
+      // `attached` fires once the element and its parents have been inserted
+      // into a document.
+      //
+      // This is a good place to perform any work related to your element's
+      // visual state or active behavior (measuring sizes, beginning animations,
+      // loading resources, etc).
+      this.updateStyles();
+    },
+
+    detached: function() {
+      // The analog to `attached`, `detached` fires when the element has been
+      // removed from a document.
+      //
+      // Use this to clean up anything you did in `attached`.
+    }
+
+  });
+
+</script>
