@@ -14,11 +14,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <!--
-An element providing a solution to no problem in particular.
+A simple login/logout ui that can be shown in a toolbar
 
 Example:
 
-    <simple-login-nav-button></simple-login-nav-button>
+    <simple-login-nav-button user="[[user]]" hide-login="{{hideLogin}}"
+      on-login-clicked="loginClicked" on-logout-clicked="logoutClicked"></simple-login-nav-button>
 
 @group Seed Elements
 @element simple-login-nav-button
@@ -43,9 +44,9 @@ Example:
 
     <span hidden$="[[hideLogin]]">
 
-      <paper-button hidden$="[[user]]" on-click="login"> Login <iron-icon icon="hardware:keyboard-arrow-right"></iron-icon> </paper-button>
+      <paper-button hidden$="[[user]]" on-click="_login"> Login <iron-icon icon="hardware:keyboard-arrow-right"></iron-icon> </paper-button>
 
-      <paper-button hidden$="[[!user]]" on-click="logout"> Logout </paper-button>
+      <paper-button hidden$="[[!user]]" on-click="_logout"> Logout </paper-button>
 
     </span>
 
@@ -61,13 +62,19 @@ Example:
 
     properties: {
 
+      /**
+       * You can send user ref here to decide if login/logout should be shown
+       */ 
       user: {
 
         type: Boolean,
         notify: false
 
       },
-
+      
+      /**
+       * Predicate to decide if the login button should be displayed
+       */ 
       hideLogin: {
 
         type: Boolean,
@@ -78,14 +85,20 @@ Example:
       }
 
     },
-
-    login: function () {
+    
+    /**
+     * Called when login is clicked
+     */ 
+    _login: function () {
 
       this.fire( 'login-clicked' );
 
     },
-
-    logout: function () {
+    
+    /**
+     * Called when logout is clicked
+     */ 
+    _logout: function () {
 
       this.fire( 'logout-clicked' );
 
