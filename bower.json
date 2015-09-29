@@ -1,6 +1,6 @@
 {
   "name": "simple-login-nav-button",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     "Dustin Gulley dlgulley411@gmail.com"
   ],
@@ -10,7 +10,8 @@
     "seed",
     "login",
     "nav",
-    "button"
+    "button",
+    "web-components"
   ],
   "main": "simple-login-nav-button.html",
   "license": "LICENSE.txt",
